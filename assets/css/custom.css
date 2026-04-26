@@ -49,3 +49,51 @@ h1, h2, h3, h4, h5, h6,
 code, pre, kbd, samp {
   font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 }
+
+/* Header logo — horizontal lockup at ~48px tall.
+   Blowfish inlines SVG logos inside a span.logo; size via the inline svg. */
+.logo svg {
+  height: 48px;
+  width: auto;
+}
+
+/* Homepage hero — stacked lockup over ivory ground */
+.db-hero {
+  padding: 4rem 1rem 3rem;
+  text-align: center;
+}
+.db-hero__lockup {
+  display: block;
+  margin: 0 auto 1.5rem;
+  width: min(280px, 60vw);
+  height: auto;
+  border-radius: 0.5rem;
+}
+.db-hero__tagline {
+  font-family: var(--db-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+  line-height: 1.45;
+  margin: 0 auto 2rem;
+  max-width: 42rem;
+  color: rgb(var(--color-neutral-700));
+}
+
+/* Static figure embeds in article content */
+article figure {
+  margin: 1.5rem 0;
+}
+article figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+article figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+  color: rgb(var(--color-neutral-700));
+}

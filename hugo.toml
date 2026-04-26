@@ -24,6 +24,10 @@ enableEmoji = true
   defaultAppearance = "light"
   autoSwitchAppearance = false
 
+  # Homepage
+  homepage.layout = "custom"
+  homepage.showRecent = false
+
   # Social / OG
   defaultSocialImage = "img/social-card.png"
 

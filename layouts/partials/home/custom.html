@@ -1,0 +1,15 @@
+{{ $hero := resources.Get "img/hero.svg" }}
+<article class="max-w-full prose dark:prose-invert">
+  <section class="db-hero">
+    <h1 class="sr-only">{{ .Site.Title }}</h1>
+    {{ with $hero }}
+      <img class="db-hero__lockup nozoom" src="{{ .RelPermalink }}" alt="Draft Bench" width="200" height="240">
+    {{ end }}
+    {{ with .Site.Params.description }}
+      <p class="db-hero__tagline">{{ . | markdownify }}</p>
+    {{ end }}
+  </section>
+  <section class="prose max-w-full">
+    {{ .Content }}
+  </section>
+</article>
