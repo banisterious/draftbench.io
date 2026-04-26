@@ -19,6 +19,11 @@ enableEmoji = true
   # Site description — shown as the hero tagline and meta description
   description = "A writing workflow for Obsidian."
 
+  # Site appearance
+  colorScheme = "draft-bench"
+  defaultAppearance = "light"
+  autoSwitchAppearance = false
+
 [params.author]
   name = "banisterious"
 
