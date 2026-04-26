@@ -1,0 +1,89 @@
+# Weekly link check: builds the site and verifies every link in the output,
+# including anchor fragments. Opens a GitHub issue if any link fails.
+name: Link check
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'  # 08:00 UTC every Monday
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.160.1
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: America/New_York
+        run: hugo --gc --minify
+
+      # Serve the built site locally and hand lychee the list of page URLs
+      # to fetch (not filesystem globs). Reasons:
+      #   * Directory URLs like /features/ need the server to resolve to
+      #     /features/index.html, the same way GitHub Pages does.
+      #   * Lychee's local-file mode misresolves same-document fragments:
+      #     `<a href="#foo">` in changelog/index.html gets checked against
+      #     the --base root rather than the containing page, producing
+      #     100+ false positives. Fetching each page over HTTP gives
+      #     lychee the correct source URL for fragment resolution.
+      - name: Serve built site and enumerate URLs
+        id: urls
+        run: |
+          cd public
+          nohup python3 -m http.server 8080 > /tmp/http.log 2>&1 &
+          for i in $(seq 1 10); do
+            if curl -sf http://localhost:8080/ > /dev/null; then
+              echo "Server ready"
+              break
+            fi
+            sleep 1
+          done
+          cd ..
+          URLS=$(find public -name "*.html" \
+            | sed 's|^public/|http://localhost:8080/|; s|index\.html$||' \
+            | sort -u \
+            | tr '\n' ' ')
+          echo "URLS=$URLS" >> "$GITHUB_ENV"
+          echo "Enumerated URLs:"
+          echo "$URLS" | tr ' ' '\n'
+
+      - name: Link check with lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --include-fragments
+            --max-concurrency 4
+            ${{ env.URLS }}
+          fail: true
+          output: ./lychee/out.md
+
+      - name: Open issue on failure
+        if: failure()
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Link check failed on ${{ github.event.repository.default_branch }}"
+          content-filepath: ./lychee/out.md
+          labels: |
+            ci
+            link-check
