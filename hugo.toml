@@ -1,0 +1,38 @@
+baseURL = 'https://draftbench.io/'
+languageCode = 'en-us'
+title = 'Draft Bench'
+theme = 'blowfish'
+
+# Enable emoji rendering
+enableEmoji = true
+
+# Build settings
+[build]
+  noJSConfigInAssets = true
+
+# HTML minifier — preserve attribute quotes so strict third-party
+# validators (Bing Webmaster Tools, etc.) can parse our meta tags.
+[minify.tdewolff.html]
+  keepQuotes = true
+
+[params]
+  # Site description — shown as the hero tagline and meta description
+  description = "A writing workflow for Obsidian."
+
+[params.author]
+  name = "banisterious"
+
+# Markup settings
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
+  # Auto-resolve relative .md links to their built page URL
+  # (homepage links to comparison.md, etc.)
+  [markup.goldmark.renderHooks.link]
+    enableDefault = true
+
+# Output formats for search
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
