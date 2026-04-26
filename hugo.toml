@@ -34,8 +34,41 @@ enableEmoji = true
   # Logo and branding
   logo = "img/logo.svg"
 
+  # Article settings
+  article.showAuthor = false
+  article.showDate = false
+  article.showReadingTime = false
+  article.showTableOfContents = true
+  article.showPagination = false
+  article.showBreadcrumbs = false
+
+  # List settings
+  list.showBreadcrumbs = false
+  list.showTableOfContents = true
+
+  # Global settings
+  enableSearch = false
+  enableCodeCopy = true
+
+  # Footer
+  footer.showCopyright = true
+  footer.showThemeAttribution = false
+  footer.showAppearanceSwitcher = false
+  footer.showScrollToTop = true
+
 [params.author]
   name = "banisterious"
+
+# Main menu
+[menu]
+  [[menu.main]]
+    name = "FAQ"
+    pageRef = "faq"
+    weight = 10
+  [[menu.main]]
+    name = "Comparison"
+    pageRef = "comparison"
+    weight = 20
 
 # Markup settings
 [markup]
