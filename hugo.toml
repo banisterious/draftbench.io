@@ -24,6 +24,12 @@ enableEmoji = true
   defaultAppearance = "light"
   autoSwitchAppearance = false
 
+  # Social / OG
+  defaultSocialImage = "img/social-card.png"
+
+  # Logo and branding
+  logo = "img/logo.svg"
+
 [params.author]
   name = "banisterious"
 
