@@ -15,6 +15,11 @@ enableEmoji = true
 [minify.tdewolff.html]
   keepQuotes = true
 
+# Google Analytics — Blowfish renders the gtag snippet from this ID,
+# gated to production builds (hugo.IsProduction) so local dev never fires.
+[services.googleAnalytics]
+  ID = "G-2D54TKKRVX"
+
 [params]
   # Site description — shown as the hero tagline and meta description
   description = "A writing workflow for Obsidian."
