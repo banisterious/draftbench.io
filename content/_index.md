@@ -19,7 +19,7 @@ The plugin stays narrow on purpose. Plot grids, character databases, beat-sheet 
 
 ## See it in action
 
-Three short loops on the [features page](features.md) show the Manuscript view, the new-draft snapshot flow, and compile in practice — captured from a real vault.
+Five short loops on the [features page](features.md) walk through new projects, the Manuscript view, versioned drafts, compile, and the integrity service — captured from a real vault.
 
 ## Where it sits
 
