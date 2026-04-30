@@ -52,7 +52,7 @@ enableEmoji = true
   list.showTableOfContents = true
 
   # Global settings
-  enableSearch = false
+  enableSearch = true
   enableCodeCopy = true
 
   # Footer
@@ -70,6 +70,10 @@ enableEmoji = true
     name = "Features"
     pageRef = "features"
     weight = 5
+  [[menu.main]]
+    name = "Documentation"
+    url = "https://github.com/banisterious/obsidian-draft-bench/wiki"
+    weight = 8
   [[menu.main]]
     name = "FAQ"
     pageRef = "faq"
