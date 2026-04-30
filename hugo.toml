@@ -79,11 +79,9 @@ enableEmoji = true
     pageRef = "comparison"
     weight = 20
   [[menu.main]]
-    name = "GitHub"
+    pre = "github"
     url = "https://github.com/banisterious/obsidian-draft-bench"
     weight = 40
-    [menu.main.params]
-      icon = "github"
 
 # Markup settings
 [markup]
