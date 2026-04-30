@@ -1,10 +1,10 @@
 ---
 title: "Frequently asked questions"
-description: "Common questions about Draft Bench: who it's for, how it compares to Longform, StoryLine, and Scrivener, and what V1 ships."
+description: "Common questions about Draft Bench: who it's for, how it compares to Longform, StoryLine, and Scrivener, and how to install via BRAT."
 showTableOfContents: true
 ---
 
-Common questions from writers evaluating Draft Bench. For deeper documentation, see the wiki (linked once V1 ships).
+Common questions from writers evaluating Draft Bench. For deeper documentation, see [the wiki](https://github.com/banisterious/obsidian-draft-bench/wiki).
 
 ## Getting started
 
@@ -20,7 +20,7 @@ If you're looking for a plotting tool with character databases, plot grids, and 
 
 ### When can I install it?
 
-Draft Bench is in active pre-V1 development. The source repository is private until V1 ships; public BRAT install lands with the V1 release. This site is the canonical place to track what's coming.
+Now. Draft Bench's first BRAT-public release (0.1.0) shipped on 2026-04-29. Install via [BRAT](https://github.com/TfTHacker/obsidian42-brat) by adding `banisterious/obsidian-draft-bench` as a beta plugin, then enabling Draft Bench in **Settings -> Community plugins**. Community-plugin directory submission follows after the 0.x phase stabilizes.
 
 ### Is it free?
 
@@ -58,7 +58,7 @@ Not in V1. Scrivener `.scriv` import is the strongest post-V1 candidate (writers
 
 ### Does it lock my notes into a plugin format?
 
-No. Every Draft Bench artifact is a regular markdown file with `dbench-` frontmatter properties. A vault opened without the plugin still reads cleanly: scenes are notes, drafts are notes, compile presets are notes. Uninstalling Draft Bench leaves your manuscript intact; the only thing you lose is the plugin's UI surfaces (Manuscript Builder, compile, integrity).
+No. Every Draft Bench artifact is a regular markdown file with `dbench-` frontmatter properties — standard Obsidian properties, visible in each note's Properties panel and queryable from Bases, Dataview, or Templater. The `dbench-` prefix is namespaced so the plugin's keys can't collide with your own conventions or another plugin's. A vault opened without the plugin still reads cleanly: scenes are notes, drafts are notes, compile presets are notes. Uninstalling Draft Bench leaves your manuscript intact; the only thing you lose is the plugin's UI surfaces (Manuscript Builder, compile, integrity).
 
 ### Does it work with other Obsidian writing plugins?
 
