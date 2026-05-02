@@ -39,6 +39,9 @@ enableEmoji = true
   # Logo and branding
   logo = "img/logo.svg"
 
+  # Brand area: render the logo only, not the duplicated site title text
+  disableTextInHeader = true
+
   # Article settings
   article.showAuthor = false
   article.showDate = false
