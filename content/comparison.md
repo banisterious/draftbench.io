@@ -6,7 +6,7 @@ showTableOfContents: true
 
 Writers evaluating tools will compare. This page lays out where Draft Bench sits next to its closest neighbors — Longform, StoryLine, Scrivener, and plain-Obsidian-without-a-plugin — without slamming any of them. All four are reasonable choices for different writers.
 
-The short version: Draft Bench is narrow on purpose. It handles the manuscript spine (projects, chapters, scenes, drafts, compile) and stays out of plotting, entity management, and analytics. If you want one tool that covers the whole writing-craft surface, Draft Bench probably isn't it. If you want a focused tool for organizing scenes and compiling a manuscript, with Bases for queries and your own notes for world-building, Draft Bench is built for that.
+The short version: Draft Bench is narrow on purpose. It handles the manuscript spine (projects, chapters, scenes, sub-scenes, drafts, compile) and stays out of plotting, entity management, and analytics. If you want one tool that covers the whole writing-craft surface, Draft Bench probably isn't it. If you want a focused tool for organizing scenes and compiling a manuscript, with Bases for queries and your own notes for world-building, Draft Bench is built for that.
 
 ---
 
@@ -17,12 +17,13 @@ The short version: Draft Bench is narrow on purpose. It handles the manuscript s
 Draft Bench is the closest spiritual descendant. The `Drafts/` and compile concepts owe a real debt to Longform's prior art. What Draft Bench adds:
 
 - **Chapter as a first-class note type.** Longform's manuscript is a flat list of scenes; Draft Bench supports both the flat shape (chapter-less projects) and a two-level project -> chapter -> scene shape, with chapter-aware compile output.
-- **Drafts as `dbench-type: draft`.** A noun, not a side-effect. Snapshots of scenes, chapters, or single-scene projects live in a configurable `Drafts/` folder, queryable via Bases like any other note.
+- **Sub-scene as a first-class note type.** Break a scene into per-unit narrative blocks (the setpieces of an auction night, the movements of a trial sequence) when the scene-as-atom granularity isn't fine enough. Each sub-scene has its own status, drafts, word count, and reorder position; the Manuscript view renders hierarchical scenes as collapsible cards; compile descends into sub-scenes in narrative order.
+- **Drafts as `dbench-type: draft`.** A noun, not a side-effect. Snapshots of scenes, chapters, sub-scenes, or single-scene projects live in a configurable `Drafts/` folder, queryable via Bases like any other note.
 - **Compile presets as notes.** A preset is a `dbench-type: compile-preset` note with content-handling rules editable in the Properties panel. Multiple presets per project — workshop draft, agent submission, final manuscript — each with their own overrides.
 - **Bidirectional linking with integrity service.** Stable IDs, plugin-maintained reverse arrays, batch repair UI for the cases that drift.
 - **Bases-native discovery.** Starter `.base` views ship for projects, scenes, and drafts.
 
-If Longform's minimal surface fits your workflow and you don't need chapters or draft-as-noun, stay with Longform. If you want the chapter shape, the draft model, or the integrity service, Draft Bench is the fit.
+If Longform's minimal surface fits your workflow and you don't need chapters, sub-scenes, or draft-as-noun, stay with Longform. If you want the chapter shape, the sub-scene shape, the draft model, or the integrity service, Draft Bench is the fit.
 
 ---
 
@@ -40,6 +41,7 @@ Concrete differences:
 | | Draft Bench | StoryLine |
 |---|---|---|
 | Manuscript spine (projects, chapters, scenes) | ✓ | ✓ |
+| Sub-scenes (per-unit narrative blocks within a scene) | ✓ (first-class type) | — |
 | Drafts as snapshots | ✓ (first-class type) | Limited |
 | Compile to MD / PDF / ODT / DOCX | ✓ | ✓ (six formats) |
 | Plotting (corkboard, plotgrid, timeline) | — | ✓ |
@@ -47,7 +49,8 @@ Concrete differences:
 | Analytics (pacing, plot-hole, prose) | — | ✓ |
 | Scrivener `.scriv` import | Post-V1 candidate | ✓ |
 | Bases-native discovery | ✓ | — |
-| `dbench-` frontmatter (vault-portable) | ✓ | Plugin-internal data |
+| Frontmatter properties | ✓ (`dbench-` namespaced) | ✓ (un-prefixed keys) |
+| Bidirectional-link integrity service | ✓ | — |
 
 If you want one plugin that does everything, StoryLine is the right choice. If you want a focused tool that handles the manuscript spine and leaves the rest to Bases queries, plain notes, or sibling plugins like [Charted Roots](https://github.com/banisterious/charted-roots), Draft Bench is built for that.
 
@@ -61,7 +64,7 @@ The real question isn't "Draft Bench vs Scrivener." It's "do I want my writing t
 
 Where Draft Bench fits Scrivener users:
 
-- **Project / chapter / scene / draft model maps cleanly to Scrivener's binder.** Most novelist binder structures port over without conceptual translation.
+- **Project / chapter / scene / sub-scene / draft model maps cleanly to Scrivener's binder.** Most novelist binder structures port over without conceptual translation; nested binder items (a scene with multiple beats) map to scene -> sub-scene.
 - **Compile to Markdown, PDF, ODT, and DOCX** covers the formats writers actually submit.
 - **Snapshots become drafts.** Scrivener's per-document snapshots have a near-equivalent in Draft Bench's `dbench-type: draft`.
 
@@ -94,4 +97,4 @@ If you're a one-novel writer who prefers minimal tooling and doesn't mind hand-r
 
 Draft Bench's `dbench-` frontmatter prefix is namespaced so it doesn't collide with other plugins' properties. Coexisting with Longform or StoryLine in the same vault is technically possible — nothing in Draft Bench fights them — but the manuscript-spine scope overlaps, and most writers will pick one tool to drive the manuscript.
 
-The exception: [Charted Roots](https://github.com/banisterious/charted-roots) is the sibling plugin, designed to coexist with Draft Bench by design. Charted Roots owns world-building (entities, relationships, characters, locations, timelines); Draft Bench owns the narrative spine (projects, chapters, scenes, drafts, compile). Two focused plugins, one shared vault, no overlap.
+The exception: [Charted Roots](https://github.com/banisterious/charted-roots) is the sibling plugin, designed to coexist with Draft Bench by design. Charted Roots owns world-building (entities, relationships, characters, locations, timelines); Draft Bench owns the narrative spine (projects, chapters, scenes, sub-scenes, drafts, compile). Two focused plugins, one shared vault, no overlap.
