@@ -53,6 +53,26 @@ The Compile CTA in the Manuscript view opens the Manuscript Builder modal. Each 
 
 ---
 
+## Compile preview, in-place
+
+A Preview tab in the Manuscript Builder renders the current preset's compile output as continuous read-only prose, no real export file needed. Tweak settings on Build, flip to Preview, see the impact, iterate.
+
+<figure>
+  <img src="/img/dbench-manuscript-builder-preview.png" alt="The Manuscript Builder modal with the Preview tab active, showing a typography toolbar (text alignment, reading width, font-size stepper, font-family dropdown) above three chapter-style headings rendered as continuous prose." loading="lazy">
+  <figcaption>The Preview tab renders the current preset's output as continuous read-only prose; the typography toolbar at the top tunes alignment, reading width, font size, and font family.</figcaption>
+</figure>
+
+Dock the Builder as a workspace tab to keep Preview pinned next to a scene you're editing. The leaf form re-renders as you save, debounced ~400ms; scroll position is preserved across re-renders so deep reading isn't reset to the top.
+
+<figure>
+  <img src="/img/dbench-manuscript-builder-leaf.png" alt="A three-pane Obsidian workspace: the Manuscript view in the left sidebar, a scene file open in source mode in the middle pane, and the Manuscript Builder docked as a workspace leaf on the right with Preview rendering the compiled prose." loading="lazy">
+  <figcaption>Builder docked as a workspace leaf — Preview pinned on the right while a scene stays open and editable in the main pane.</figcaption>
+</figure>
+
+Both behaviors shipped in 0.3.x — Preview tab in 0.3.0, leaf form with file-save reactivity in 0.3.1.
+
+---
+
 ## Bases-native discovery
 
 Starter `.base` views ship for projects, scenes, and drafts. Filter, group, and surface your manuscript with the same Bases setup you use for everything else in your vault — no plugin-specific query language, no parallel data store.
