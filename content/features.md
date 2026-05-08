@@ -73,6 +73,70 @@ Both behaviors shipped in 0.3.x — Preview tab in 0.3.0, leaf form with file-sa
 
 ---
 
+## Importing from Scrivener
+
+A multi-step wizard reads a Scrivener 3 project bundle from inside the vault and produces a fresh Draft Bench project. Chapters, scenes, sub-scenes, drafts, and inspector content all carry across; every mapping is reviewed in a Preview step before any file gets written.
+
+<video autoplay muted loop playsinline preload="metadata"
+       src="/img/dbench-scrivener-import.webm"
+       aria-label="The Scrivener import wizard running end-to-end against a sample Scrivener 3 novel-template project: a .scriv folder is dropped onto the Source step, the Parse step renders the counts summary, the Hierarchy step shows auto-detected scene and chapter rows, the Metadata step routes statuses and custom fields, the Options step exposes the snapshot template, the Preview step shows the file tree, and the Complete step reports success."></video>
+
+### What it does
+
+- **Reads `.scrivx` + RTF/RTFD bodies.** Scrivener 3 binder hierarchy, document text, snapshots, and inspector content are parsed into an in-memory model.
+- **Maps the binder to Draft Bench's four levels.** Auto-detection runs on parse: deepest leaves with prose -> scenes; immediate folder parents -> chapters; anything above the chapter level (Parts, Books, Volumes) becomes `scrivener-part` frontmatter on the chapters they contain; sub-sub-scenes concatenate as nested headings inside the parent sub-scene. A per-row override dropdown surfaces in the Hierarchy Mapping step for any auto-detection that doesn't fit.
+- **Routes statuses, labels, and custom metadata interactively.** Scrivener statuses match against Draft Bench's status vocabulary; unmatched rows can add to the vocabulary or drop. Labels go to a writer-named frontmatter key (default `scrivener-label`). Custom metadata routes per-field with type-aware coercion: Checkbox to boolean, List to resolved option title, Date to ISO `YYYY-MM-DD`, Text to raw string.
+- **Converts RTF bodies to markdown.** Italics, bold, lists, smart quotes, em-dashes, footnotes (inline + inspector), comments (rendered as Obsidian `%% %%` syntax at the original anchor), inline images (extracted to `Research/Images/`), and cross-document Scrivener Links (rewritten to wikilinks via a UUID-to-path map) all carry across. Complex RTF tables fall back to inline HTML and are flagged in the import error log.
+- **Optional snapshot import.** Per-document Scrivener snapshots become `dbench-type: draft` files alongside each scene. Per-scene cap (1 / 3 / 5 / All); filename template with variables `{scene}` `{title}` `{date}` `{date_compact}` `{time}` `{n}`. Original Scrivener title preserved as `scrivener-snapshot-title` frontmatter regardless of whether `{title}` appears in the template.
+- **Optional Research import.** The Research folder and any other non-manuscript top-level folders carry across with hierarchy preserved verbatim. Templates and Trash are always skipped.
+- **Cross-platform.** The importer reads via Obsidian's vault adapter on every supported OS. Mobile users (Android verified; iOS / iPadOS untested) get the same wizard and the same write pass.
+
+<figure>
+  <img src="/img/dbench-scrivener-import-source.png" alt="Step 1 of the Scrivener import wizard: the Source step, where a .scriv bundle is selected from inside the vault" loading="lazy">
+  <figcaption>Source — pick a `.scriv` bundle from inside the vault.</figcaption>
+</figure>
+
+<figure>
+  <img src="/img/dbench-scrivener-import-parse.png" alt="Step 2 of the Scrivener import wizard: the Parse step, with a counts summary of binder items, RTF documents, snapshots, and custom metadata fields" loading="lazy">
+  <figcaption>Parse — counts of binder items, documents, snapshots, and custom metadata fields surface up front.</figcaption>
+</figure>
+
+<figure>
+  <img src="/img/dbench-scrivener-import-hierarchy.png" alt="Step 3 of the Scrivener import wizard: the Hierarchy Mapping step, showing auto-detected scene and chapter rows with per-row override dropdowns" loading="lazy">
+  <figcaption>Hierarchy Mapping — auto-detection assigns each binder item to project / chapter / scene / sub-scene; per-row dropdowns override anything that doesn't fit.</figcaption>
+</figure>
+
+<figure>
+  <img src="/img/dbench-scrivener-import-metadata.png" alt="Step 4 of the Scrivener import wizard: the Metadata step, routing Scrivener statuses, labels, and custom-metadata fields into Draft Bench's vocabulary" loading="lazy">
+  <figcaption>Metadata — statuses match against the Draft Bench vocabulary, labels route to a writer-named frontmatter key, and custom metadata routes per-field with type-aware coercion.</figcaption>
+</figure>
+
+<figure>
+  <img src="/img/dbench-scrivener-import-snapshots.png" alt="Step 5 of the Scrivener import wizard: the Options step, with the optional snapshot import controls — per-scene cap and filename template" loading="lazy">
+  <figcaption>Options — opt into snapshot import with a per-scene cap and a filename template.</figcaption>
+</figure>
+
+<figure>
+  <img src="/img/dbench-scrivener-import-preview.png" alt="Step 6 of the Scrivener import wizard: the Preview step, showing the file tree of files about to be written" loading="lazy">
+  <figcaption>Preview — every file the importer is about to write, before any vault changes happen.</figcaption>
+</figure>
+
+<figure>
+  <img src="/img/dbench-scrivener-import-complete.png" alt="Step 7 of the Scrivener import wizard: the Complete step, reporting a successful import with file counts" loading="lazy">
+  <figcaption>Complete — successful import with file counts; any non-fatal warnings show in the import error log.</figcaption>
+</figure>
+
+### What V1 doesn't do
+
+- **Scrivener 2 and iOS Scrivener formats.** Different schema and bundle structure. Re-add as separate parser paths post-V1 if a contributor surfaces with a project to test against.
+- **Reading `.scriv` bundles from outside the vault.** Copy the bundle into the vault first. The wizard's Source step can do the copy on most platforms via drag-drop or the device picker.
+- **Compile-format translation.** Scrivener compile presets don't map cleanly to Draft Bench compile presets. Build your DB presets from scratch after import.
+- **DB -> Scrivener export.** No demand for the reverse direction.
+
+Full walkthrough, mapping reference, and troubleshooting at the [wiki page](https://github.com/banisterious/obsidian-draft-bench/wiki/Importing-from-Scrivener).
+
+---
+
 ## Bases-native discovery
 
 Starter `.base` views ship for projects, scenes, and drafts. Filter, group, and surface your manuscript with the same Bases setup you use for everything else in your vault — no plugin-specific query language, no parallel data store.
