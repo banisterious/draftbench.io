@@ -74,17 +74,28 @@ enableEmoji = true
     pageRef = "features"
     weight = 5
   [[menu.main]]
-    name = "Documentation"
-    url = "https://github.com/banisterious/obsidian-draft-bench/wiki"
-    weight = 8
-  [[menu.main]]
-    name = "FAQ"
-    pageRef = "faq"
-    weight = 10
-  [[menu.main]]
     name = "Comparison"
     pageRef = "comparison"
     weight = 20
+  [[menu.main]]
+    identifier = "docs"
+    name = "Docs"
+    weight = 30
+  [[menu.main]]
+    parent = "docs"
+    name = "Guides"
+    pageRef = "guides"
+    weight = 10
+  [[menu.main]]
+    parent = "docs"
+    name = "Documentation"
+    url = "https://github.com/banisterious/obsidian-draft-bench/wiki"
+    weight = 20
+  [[menu.main]]
+    parent = "docs"
+    name = "FAQ"
+    pageRef = "faq"
+    weight = 30
   [[menu.main]]
     pre = "github"
     url = "https://github.com/banisterious/obsidian-draft-bench"
