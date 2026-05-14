@@ -99,10 +99,12 @@ enableEmoji = true
   [[menu.main]]
     identifier = "obsidian"
     pre = "obsidian"
+    title = "Install from Obsidian Community"
     url = "https://community.obsidian.md/plugins/draft-bench"
     weight = 35
   [[menu.main]]
     pre = "github"
+    title = "View source on GitHub"
     url = "https://github.com/banisterious/obsidian-draft-bench"
     weight = 40
 
