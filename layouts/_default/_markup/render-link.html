@@ -1,0 +1,41 @@
+{{/* Project-level override of Blowfish's render-link.html. Identical to
+  upstream except non-standard `obsidian://` URLs are marked safeURL so Go's
+  HTML template sanitizer doesn't replace them with #ZgotmplZ. Other schemes
+  flow through Blowfish's logic unchanged. */}}
+{{- $u := urls.Parse .Destination -}}
+{{- $href := $u.String -}}
+{{- if strings.HasPrefix $u.String "#" -}}
+  {{- $href = printf "%s#%s" .PageInner.RelPermalink $u.Fragment -}}
+{{- else if and $href (not $u.IsAbs) -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- with or
+    ($.PageInner.GetPage $path)
+    ($.PageInner.Resources.Get $path)
+    (resources.Get $path)
+  -}}
+    {{- $href = .RelPermalink -}}
+    {{- with $u.RawQuery -}}
+      {{- $href = printf "%s?%s" $href . -}}
+    {{- end -}}
+    {{- with $u.Fragment -}}
+      {{- $href = printf "%s#%s" $href . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $isObsidianURI := strings.HasPrefix .Destination "obsidian://" -}}
+
+{{- $forceNewTab := .Page.Params.externalLinkForceNewTab | default (.Page.Site.Params.article.externalLinkForceNewTab | default true) -}}
+{{- $isExternal := or (strings.HasPrefix .Destination "http:") (strings.HasPrefix .Destination "https:") -}}
+{{- $newTab := and $forceNewTab $isExternal -}}
+
+{{- if $isObsidianURI -}}
+<a href="{{ $href | safeURL }}" {{ with .Title }}title="{{ . }}"{{ end }}>
+  {{- .Text | safeHTML -}}
+</a>
+{{- else -}}
+<a href="{{ $href }}" {{ with .Title }}title="{{ . }}"{{ end }}
+  {{- if $newTab }} target="_blank" rel="noreferrer"{{ end }}>
+  {{- .Text | safeHTML -}}
+</a>
+{{- end -}}
