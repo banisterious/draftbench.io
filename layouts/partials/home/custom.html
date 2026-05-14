@@ -1,13 +1,33 @@
 {{ $hero := resources.Get "img/hero.svg" }}
 <article class="max-w-full prose dark:prose-invert">
   <section class="db-hero">
-    <h1 class="sr-only">{{ .Site.Title }}</h1>
     {{ with $hero }}
       <img class="db-hero__lockup nozoom" src="{{ .RelPermalink }}" alt="Draft Bench" width="200" height="240">
     {{ end }}
+    <h1 class="db-hero__title">{{ .Site.Title }}</h1>
     {{ with .Site.Params.description }}
       <p class="db-hero__tagline">{{ . | markdownify }}</p>
     {{ end }}
+    <div class="db-install-cta">
+      <a href="obsidian://show-plugin?id=draft-bench" class="db-install-button">
+        <span>Install in Obsidian</span>
+      </a>
+      <p class="db-install-fallback">
+        No Obsidian yet? <a href="https://obsidian.md">Get it here</a> — it's free.
+      </p>
+    </div>
+    <div class="db-hero__actions">
+      <a class="!rounded-md bg-primary-600 px-4 py-2 !text-neutral !no-underline hover:!bg-primary-500"
+         href="https://github.com/banisterious/obsidian-draft-bench"
+         target="_blank"
+         rel="noopener noreferrer"
+         role="button">View on GitHub</a>
+      <a class="!rounded-md bg-primary-600 px-4 py-2 !text-neutral !no-underline hover:!bg-primary-500"
+         href="https://github.com/banisterious/obsidian-draft-bench/wiki/Getting-Started"
+         target="_blank"
+         rel="noopener noreferrer"
+         role="button">Get Started</a>
+    </div>
   </section>
   <section class="prose max-w-full">
     {{ .Content }}
