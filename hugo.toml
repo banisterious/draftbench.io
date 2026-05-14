@@ -97,7 +97,7 @@ enableEmoji = true
     pageRef = "faq"
     weight = 30
   [[menu.main]]
-    name = "Install from Obsidian Community"
+    identifier = "obsidian"
     pre = "obsidian"
     url = "https://community.obsidian.md/plugins/draft-bench"
     weight = 35
