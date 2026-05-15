@@ -57,6 +57,56 @@ code, pre, kbd, samp {
   width: auto;
 }
 
+/* Temporary BRAT → Community Plugins migration banner.
+   Rendered above the homepage hero when params.showMigrationBanner is true.
+   Dismiss action persists in localStorage via static/js/db-migration-banner.js. */
+.db-migration-banner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0.875rem 2.5rem 0.875rem 1rem;
+  background: rgb(var(--color-neutral-100));
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-left: 4px solid rgb(var(--color-primary-600));
+  border-radius: 0.375rem;
+  color: rgb(var(--color-neutral-800));
+  font-family: var(--db-font-serif);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.db-migration-banner__body {
+  margin: 0;
+  flex: 1;
+}
+.db-migration-banner__body a {
+  color: rgb(var(--color-primary-600));
+  font-weight: 600;
+}
+.db-migration-banner__body a:hover,
+.db-migration-banner__body a:focus {
+  text-decoration: underline;
+}
+.db-migration-banner__dismiss {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.5rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: rgb(var(--color-neutral-600));
+  border-radius: 0.25rem;
+}
+.db-migration-banner__dismiss:hover,
+.db-migration-banner__dismiss:focus {
+  color: rgb(var(--color-primary-600));
+  background: rgb(var(--color-neutral-200));
+}
+
 /* Homepage hero — stacked lockup over ivory ground */
 .db-hero {
   padding: 4rem 1rem 3rem;

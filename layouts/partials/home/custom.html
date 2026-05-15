@@ -1,5 +1,14 @@
 {{ $hero := resources.Get "img/hero.svg" }}
 <article class="max-w-full prose dark:prose-invert">
+  {{ if .Site.Params.showMigrationBanner }}
+  <aside class="db-migration-banner not-prose" role="region" aria-label="Migration notice">
+    <p class="db-migration-banner__body">
+      <strong>Draft Bench is now in the Community Plugins directory.</strong>
+      If you originally installed via BRAT, <a href="/faq/#i-installed-via-brat--should-i-switch">here's the 3-step switch</a> — recommended for simpler updates.
+    </p>
+    <button type="button" class="db-migration-banner__dismiss" aria-label="Dismiss notice">&times;</button>
+  </aside>
+  {{ end }}
   <section class="db-hero">
     <h1 class="sr-only">{{ .Site.Title }}</h1>
     {{ with $hero }}
