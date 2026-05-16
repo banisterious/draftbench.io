@@ -103,6 +103,11 @@ enableEmoji = true
     pageRef = "faq"
     weight = 30
   [[menu.main]]
+    parent = "docs"
+    name = "Changelog"
+    pageRef = "changelog"
+    weight = 40
+  [[menu.main]]
     identifier = "obsidian"
     pre = "obsidian"
     title = "Install from Obsidian Community"
